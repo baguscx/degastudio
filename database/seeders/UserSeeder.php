@@ -1,0 +1,27 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\User;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class UserSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        User::create([
+            'name' => 'User Doe',
+            'email' => 'user@degastudio.com',
+            'password' => bcrypt('password'),
+        ])->assignRole('user');
+        User::create([
+            'name' => 'Admin Doe',
+            'email' => 'admin@degastudio.com',
+            'password' => bcrypt('password'),
+        ])->assignRole('admin');
+    }
+}
