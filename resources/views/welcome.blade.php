@@ -22,14 +22,16 @@
 			CSS
 			============================================= -->
 			<link rel="stylesheet" href="{{asset('asli/css/linearicons.css')}}">
-            <link rel="stylesheet" href="{{url('https://cdn.linearicons.com/free/1.0.0/icon-font.min.css')}}">
 			<link rel="stylesheet" href="{{asset('asli/css/font-awesome.min.css')}}">
+            <link rel="stylesheet" href="{{url('https://cdn.linearicons.com/free/1.0.0/icon-font.min.css')}}">
 			<link rel="stylesheet" href="{{asset('asli/css/magnific-popup.css')}}">
 			<link rel="stylesheet" href="{{asset('asli/css/nice-select.css')}}">
 			<link rel="stylesheet" href="{{asset('asli/css/owl.carousel.css')}}">
 			<link rel='stylesheet' href="{{asset('asli/css/simplelightbox.min.css')}}">
 			<link rel="stylesheet" href="{{asset('asli/css/bootstrap.css')}}">
 			<link rel="stylesheet" href="{{asset('asli/css/main.css')}}">
+            <link rel="stylesheet" href="{{url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css')}}">
+
 
 		</head>
 		<body>
@@ -46,7 +48,7 @@
 									<a href="#home">Home</a>
 									<a href="#about">About Me</a>
 									<a href="#gallery">Gallery</a>
-									<a href="#blog">Blog</a>
+									{{-- <a href="#blog">Blog</a> --}}
                                     @if (Auth::check())
                                         @if(Auth::user()->hasRole('admin'))
                                             <a href="{{route('paket')}}">Paket</a>
@@ -119,17 +121,14 @@
 				<div class="container">
 					<div class="row d-flex align-items-center">
 						<div class="col-lg-6 about-left">
-							<img class="img-fluid" src="img/about-img.jpg" alt="">
+							<img class="img-fluid" width="500px" src="{{asset('images/logoo.png')}}" alt="">
 						</div>
 						<div class="col-lg-6 about-right">
 							<h1>
-								We Believe that <br>
-								Interior beautifies the
+								Tentang Degastudio
 							</h1>
-							<p>
-								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that.
-							</p>
-							<button class="submit-btn primary-btn mt-20 text-uppercase ">Hire me now<span class="lnr lnr-arrow-right"></span></button>
+							<p>Kami adalah tim fotografer profesional yang berdedikasi untuk menangkap setiap momen berharga Anda dengan kualitas terbaik. Dari sesi foto keluarga dan pre-wedding hingga acara korporat, kami menawarkan layanan yang disesuaikan dengan kebutuhan Anda. Lihat galeri kami untuk melihat hasil karya kami dan temukan paket yang sesuai untuk acara spesial Anda. Pemesanan mudah dan fleksibel—biarkan kami mengabadikan kenangan Anda dengan sentuhan seni yang unik. Terima kasih telah memilih Degastudio!</p>
+							<button class="submit-btn primary-btn mt-20 text-uppercase "> <a class="text-light" href="{{route('pesan')}}">Pesan Sekarang</a> <span class="lnr lnr-arrow-right"></span></button>
 						</div>
 					</div>
 				</div>
@@ -141,35 +140,24 @@
 				<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-md-8 pb-30 header-text">
-							<h1 class="text-white">My Recent Photos</h1>
+							<h1 class="text-white">Foto Terbaru</h1>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> labore  et dolore magna aliqua.
+                                Beberapa Hasil Foto Kami
 							</p>
 						</div>
-					</div>
-					<div class="gal">
-						<a href="img/p1.jpg"><img src="img/p1.jpg" alt=""></a>
-						<a href="img/p2.jpg"><img src="img/p2.jpg" alt=""></a>
-						<a href="img/p3.jpg"><img src="img/p3.jpg" alt=""></a>
-						<a href="img/p4.jpg"><img src="img/p4.jpg" alt=""></a>
-						<a href="img/p5.jpg"><img src="img/p5.jpg" alt=""></a>
-						<a href="img/p6.jpg"><img src="img/p6.jpg" alt=""></a>
-						<a href="img/p7.jpg"><img src="img/p7.jpg" alt=""></a>
-						<a href="img/p8.jpg"><img src="img/p8.jpg" alt=""></a>
-						<a href="img/p9.jpg"><img src="img/p9.jpg" alt=""></a>
-						<a href="img/p10.jpg"><img src="img/p10.jpg" alt=""></a>
-						<a href="img/p11.jpg"><img src="img/p11.jpg" alt=""></a>
-						<a href="img/p12.jpg"><img src="img/p12.jpg" alt=""></a>
-						<a href="img/p13.jpg"><img src="img/p13.jpg" alt=""></a>
-						<a href="img/p14.jpg"><img src="img/p14.jpg" alt=""></a>
-						<a href="img/p15.jpg"><img src="img/p15.jpg" alt=""></a>
-						<a href="img/p16.jpg"><img src="img/p16.jpg" alt=""></a>
-
+                        <div class="gal">
+                            <a href="#"><img src="images/slide1.jpg" alt=""></a>
+                            <a href="#"><img src="images/slide2.jpg" alt=""></a>
+                            <a href="#"><img src="images/slide3.png" alt=""></a>
+                            <a href="#"><img src="images/slide3a.jpg" alt=""></a>
+                            <a href="#"><img src="images/slide10.jpg" alt=""></a>
+                            <a href="#"><img src="images/slide20.jpg" alt=""></a>
+                        </div>
 					</div>
 				</div>
 			</section>
 
-			<!-- Start callto Area -->
+			{{-- <!-- Start callto Area -->
 			<section class="callto-area pt-50 pb-50">
 				<div class="container">
 					<div class="row">
@@ -300,18 +288,18 @@
 					</div>
 				</div>
 			</section>
-			<!-- End contact Area -->
+			<!-- End contact Area --> --}}
 
 			<!-- start footer Area -->
 			<footer class="footer-area">
 				<div class="container">
 					<div class="row footer-bottom d-flex justify-content-between">
-						<p class="col-lg-8 col-sm-12 footer-text m-0 text-white">Copyright © 2017 All rights reserved   |   This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#">Colorlib</a></p>
+						<p class="col-lg-8 col-sm-12 footer-text m-0 text-white">Copyright © 2024 All rights reserved</p>
 						<div class="col-lg-4 col-sm-12 footer-social">
-							<a href="#"><i class="fa fa-facebook"></i></a>
-							<a href="#"><i class="fa fa-twitter"></i></a>
-							<a href="#"><i class="fa fa-dribbble"></i></a>
-							<a href="#"><i class="fa fa-behance"></i></a>
+							<a href="#"><i class="fa-brands fa-facebook"></i></a>
+							<a href="#"><i class="fa-brands fa-twitter"></i></a>
+							<a href="#"><i class="fa-brands fa-dribbble"></i></a>
+							<a href="#"><i class="fa-brands fa-behance"></i></a>
 						</div>
 					</div>
 				</div>
