@@ -46,8 +46,8 @@
                                 <td>Rp {{ number_format($pesan->harga, 0, ',', '.') }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Tanggal Pemesanan</th>
-                                <td>{{ \Carbon\Carbon::parse($pesan->tanggal)->format('d-m-Y') }}</td>
+                                <th scope="row">Tanggal & Jam Pemesanan</th>
+                                <td>{{ \Carbon\Carbon::parse($pesan->tanggal)->format('d-m-Y').' | '.$pesan->jam}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Status Pembayaran</th>

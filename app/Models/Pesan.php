@@ -17,6 +17,7 @@ class Pesan extends Model
         'paket',
         'harga',
         'tanggal',
+        'jam',
         'payment_status',
         'bukti_pembayaran',
     ];

@@ -1,1 +1,1 @@
-<a href="{{route}}"></a>
+<x-app-layout></x-app-layout>

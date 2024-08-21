@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('paket');
             $table->string('harga');
             $table->date('tanggal');
+            $table->string('jam');
             $table->string('payment_status')->nullable();
             $table->string('bukti_pembayaran')->nullable();
             $table->timestamps();

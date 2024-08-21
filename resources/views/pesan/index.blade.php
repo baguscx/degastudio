@@ -1,5 +1,11 @@
 <x-app-layout>
     <div class="container mt-5">
+                @if ($bayar)
+                    <div class="alert alert-warning">
+                        <strong>Pemberitahuan:</strong><br>
+                        Anda Memiliki Pesanan yang belum dibayar. Silahkan lakukan pembayaran sebelum tanggal pemesanan. Klik <a href="{{ route('riwayat') }}">Disini</a>
+                    </div>
+                @endif
         <form action="{{route('pesan.store')}}" method="POST">
             @csrf
             <div class="row">
@@ -64,7 +70,29 @@
                         <input type="date" id="order_date" name="order_date" class="form-control" required>
                     </div>
                 </div>
+
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="jam">Pilih Jam:</label>
+                        <select id="jam" name="jam" class="form-control" required>
+                            <option value="">-- Pilih Jam --</option>
+                            <option value="09:00">09:00</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="12:00">12:00</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                            <option value="18:00">18:00</option>
+                            <option value="19:00">19:00</option>
+                            <option value="20:00">20:00</option>
+                        </select>
+                    </div>
+                </div>
             </div>
+
             <button type="submit" class="btn btn-primary">Pesan Sekarang</button>
         </form>
 
@@ -73,7 +101,7 @@
                 <label for="ordered-dates">Tanggal Sudah Dipesan:</label>
                 <ul id="ordered-dates" class="list-group">
                     @foreach($orderedDates as $date)
-                        <li class="list-group-item">{{ \Carbon\Carbon::parse($date)->format('d-m-Y') }}</li>
+    <li class="list-group-item">Tanggal: {{ \Carbon\Carbon::parse($date['tanggal'])->format('d-m-Y') }} - Jam: {{ $date['jam'] }}</li>
                     @endforeach
                 </ul>
             </div>
@@ -114,10 +142,29 @@
 
         document.getElementById('order_date').addEventListener('change', function() {
             const selectedDate = this.value;
-            if (orderedDates.includes(selectedDate)) {
-                alert("Tanggal yang dipilih sudah dipesan, silakan pilih tanggal lain.");
-                this.value = ""; // Clear the selected date
+            const jamSelect = document.getElementById('jam');
+
+            // Filter jam yang sudah dipesan pada tanggal yang dipilih
+            const unavailableTimes = orderedDates.filter(item => item.tanggal === selectedDate).map(item => item.jam);
+
+            // Reset pilihan jam
+            jamSelect.querySelectorAll('option').forEach(option => {
+                option.disabled = false;
+            });
+
+            // Disable jam yang sudah dipesan
+            unavailableTimes.forEach(time => {
+                const option = jamSelect.querySelector(`option[value="${time}"]`);
+                if (option) {
+                    option.disabled = true;
+                }
+            });
+
+            if (unavailableTimes.includes(jamSelect.value)) {
+                alert("Jam yang dipilih sudah dipesan, silakan pilih jam lain.");
+                jamSelect.value = ""; // Clear the selected time
             }
         });
+
     </script>
 </x-app-layout>

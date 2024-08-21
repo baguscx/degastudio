@@ -15,13 +15,18 @@ class PesanController extends Controller
      */
     public function index()
     {
-    // Fetch all available packages
-    $pakets = Paket::all();
-    // Fetch all orders and extract the dates
-    $pesans = Pesan::all();
-    $orderedDates = $pesans->pluck('tanggal')->toArray(); // Adjust 'order_date' to match your column name
-    // Pass the data to the view
-    return view('pesan.index', compact('pakets', 'pesans', 'orderedDates'));
+        // Fetch all available packages
+        $pakets = Paket::all();
+        // Fetch all orders and extract the dates with jam
+        $pesans = Pesan::all();
+        $orderedDates = $pesans->map(function ($pesan) {
+            return ['tanggal' => $pesan->tanggal, 'jam' => $pesan->jam];
+        })->toArray();
+
+        $bayar = Pesan::where('user_id', Auth::id())->where('payment_status', 'pending')->first();
+
+        // Pass the data to the view
+        return view('pesan.index', compact('pakets', 'orderedDates', 'bayar'));
     }
 
     /**
@@ -35,29 +40,33 @@ class PesanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        // Check if the selected date is already booked
-        $existingBooking = Pesan::where('tanggal', $request->order_date)->first();
-        if ($existingBooking) {
-            return back()->withErrors(['order_date' => 'Tanggal yang dipilih sudah dipesan.']);
+        public function store(Request $request)
+        {
+            // Check if the selected date and time is already booked
+            $existingBooking = Pesan::where('tanggal', $request->order_date)
+                                    ->where('jam', $request->jam)
+                                    ->first();
+            if ($existingBooking) {
+                return back()->withErrors(['order_date' => 'Tanggal dan jam yang dipilih sudah dipesan.']);
+            }
+
+            // Create a new booking record
+            Pesan::create([
+                'user_id' => Auth::id(),
+                'name' => $request->nama,
+                'phone' => $request->phone,
+                'tipe' => $request->tipe,
+                'paket' => $request->nama, // Assuming 'nama' is the package name
+                'harga' => $request->harga,
+                'tanggal' => $request->order_date,
+                'jam' => $request->jam,
+                'payment_status' => 'pending',
+            ]);
+
+            // Redirect back with a success message
+            return redirect()->route('riwayat')->with('success', 'Pesanan Anda telah berhasil dibuat!');
         }
 
-        // Create a new booking record
-        Pesan::create([
-            'user_id' => Auth::id(),
-            'name' => $request->nama,
-            'phone' => $request->phone,
-            'tipe' => $request->tipe,
-            'paket' => $request->nama, // Assuming 'nama' is the package name
-            'harga' => $request->harga,
-            'tanggal' => $request->order_date,
-            'payment_status' => 'pending',
-        ]);
-
-        // Redirect back with a success message
-        return redirect()->route('riwayat')->with('success', 'Pesanan Anda telah berhasil dibuat!');
-    }
 
     /**
      * Display the specified resource.
