@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('jam');
             $table->string('payment_status')->nullable();
             $table->string('bukti_pembayaran')->nullable();
+            $table->string('catatan')->nullable();
             $table->timestamps();
         });
     }

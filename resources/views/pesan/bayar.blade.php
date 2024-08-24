@@ -59,6 +59,10 @@
                                     @endif
                                 </td>
                             </tr>
+                            <tr>
+                                <th scope="catatan">Catatan</th>
+                                <td>{{ $pesan->catatan }}</td>
+                            </tr>
                             @if($pesan->bukti_pembayaran)
                                 <tr>
                                     <th scope="row">Bukti Pembayaran</th>

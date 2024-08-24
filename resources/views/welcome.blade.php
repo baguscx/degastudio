@@ -121,16 +121,24 @@
 				<div class="container">
 					<div class="row d-flex align-items-center">
 						<div class="col-lg-6 about-left">
-							<img class="img-fluid" width="500px" src="{{asset('images/logoo.png')}}" alt="">
+							<img class="img-fluid" width="500px" src="{{asset('images/bg.jpeg')}}" alt="">
 						</div>
 						<div class="col-lg-6 about-right">
 							<h1>
 								Tentang Degastudio
 							</h1>
 							<p>Kami adalah tim fotografer profesional yang berdedikasi untuk menangkap setiap momen berharga Anda dengan kualitas terbaik. Dari sesi foto keluarga dan pre-wedding hingga acara korporat, kami menawarkan layanan yang disesuaikan dengan kebutuhan Anda. Lihat galeri kami untuk melihat hasil karya kami dan temukan paket yang sesuai untuk acara spesial Anda. Pemesanan mudah dan fleksibel—biarkan kami mengabadikan kenangan Anda dengan sentuhan seni yang unik. Terima kasih telah memilih Degastudio!</p>
-							<button class="submit-btn primary-btn mt-20 text-uppercase "> <a class="text-light" href="{{route('pesan')}}">Pesan Sekarang</a> <span class="lnr lnr-arrow-right"></span></button>
-						</div>
-					</div>
+							@if (Auth::check())
+                                <a class="submit-btn primary-btn mt-20 text-uppercase text-light" href="{{Auth::user()->hasRole('user') ? route('pesan') : ""}}">Pesan Sekarang<span class="lnr lnr-arrow-right"></span></a>
+                            @else
+                                <a class="submit-btn primary-btn mt-20 text-uppercase text-light" href="{{route('login')}}">Pesan Sekarang<span class="lnr lnr-arrow-right"></span></a>
+                            @endif
+                        <div class="mt-4" >
+                            <a style="margin-right: 1rem;" href="https://www.instagram.com/degalerii_"><i class="fa-brands fa-instagram fa-2x"></i></a>
+                            <a style="margin-right: 1rem;" href="https://www.tiktok.com/@degalerii"><i class="fa-brands fa-tiktok fa-2x"></i></a>
+                            <a style="margin-right: 1rem;" href="https://wa.me/+6289699213243"><i class="fa-brands fa-whatsapp fa-2x"></i></a>
+                            <a style="margin-right: 1rem;" href="mail:mediadegaleri@gmail.com"><i class="fa-regular fa-envelope fa-2x"></i></a>
+                        </div>
 				</div>
 			</section>
 			<!-- End About Area -->
@@ -296,10 +304,10 @@
 					<div class="row footer-bottom d-flex justify-content-between">
 						<p class="col-lg-8 col-sm-12 footer-text m-0 text-white">Copyright © 2024 All rights reserved</p>
 						<div class="col-lg-4 col-sm-12 footer-social">
-							<a href="#"><i class="fa-brands fa-facebook"></i></a>
-							<a href="#"><i class="fa-brands fa-twitter"></i></a>
-							<a href="#"><i class="fa-brands fa-dribbble"></i></a>
-							<a href="#"><i class="fa-brands fa-behance"></i></a>
+							<a href="https://www.instagram.com/degalerii_"><i class="fa-brands fa-instagram"></i></a>
+							<a href="https://www.tiktok.com/@degalerii"><i class="fa-brands fa-tiktok"></i></a>
+							<a href="https://wa.me/+6289699213243"><i class="fa-brands fa-whatsapp"></i></a>
+							<a href="mail:mediadegaleri@gmail.com"><i class="fa-regular fa-envelope"></i></a>
 						</div>
 					</div>
 				</div>

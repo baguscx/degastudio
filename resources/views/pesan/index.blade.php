@@ -64,18 +64,21 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="form-group mb-3">
                         <label for="order_date">Pilih Tanggal:</label>
                         <input type="date" id="order_date" name="order_date" class="form-control" required>
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="form-group mb-3">
                         <label for="jam">Pilih Jam:</label>
                         <select id="jam" name="jam" class="form-control" required>
                             <option value="">-- Pilih Jam --</option>
+                            <option value="06:00">06:00</option>
+                            <option value="07:00">07:00</option>
+                            <option value="08:00">08:00</option>
                             <option value="09:00">09:00</option>
                             <option value="10:00">10:00</option>
                             <option value="11:00">11:00</option>
@@ -89,6 +92,13 @@
                             <option value="19:00">19:00</option>
                             <option value="20:00">20:00</option>
                         </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="catatan">Catatan:</label>
+                        <textarea id="catatan" name="catatan" class="form-control"></textarea>
                     </div>
                 </div>
             </div>

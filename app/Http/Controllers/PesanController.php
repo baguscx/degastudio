@@ -15,6 +15,7 @@ class PesanController extends Controller
      */
     public function index()
     {
+
         // Fetch all available packages
         $pakets = Paket::all();
         // Fetch all orders and extract the dates with jam
@@ -60,6 +61,7 @@ class PesanController extends Controller
                 'harga' => $request->harga,
                 'tanggal' => $request->order_date,
                 'jam' => $request->jam,
+                'catatan' => $request->catatan,
                 'payment_status' => 'pending',
             ]);
 

@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth', 'role:admin')->group(function () {
     Route::get('/admin', function () {
-        return view('admin.index');
+        return redirect()->route('welcome');
     })->name('admin');
     Route::get('/paket',[PaketController::class, 'index'])->name('paket');
     Route::delete('/paket/{id}', [PaketController::class, 'destroy'])->name('paket.destroy');
@@ -34,7 +34,7 @@ Route::middleware('auth', 'role:admin')->group(function () {
 
 Route::middleware('auth', 'role:user')->group(function () {
     Route::get('/user', function () {
-        return view('user.index');
+        return redirect()->route('welcome');
     })->name('user');
     Route::get('/pesan',[PesanController::class, 'index'])->name('pesan');
     Route::post('/pesan',[PesanController::class, 'store'])->name('pesan.store');

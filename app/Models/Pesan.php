@@ -20,6 +20,7 @@ class Pesan extends Model
         'jam',
         'payment_status',
         'bukti_pembayaran',
+        'catatan',
     ];
 
         public function user()
