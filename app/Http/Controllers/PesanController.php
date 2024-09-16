@@ -6,6 +6,7 @@ use App\Models\Paket;
 use App\Models\Pesan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
 class PesanController extends Controller
@@ -24,7 +25,7 @@ class PesanController extends Controller
             return ['tanggal' => $pesan->tanggal, 'jam' => $pesan->jam];
         })->toArray();
 
-        $bayar = Pesan::where('user_id', Auth::id())->where('payment_status', 'pending')->first();
+        $bayar = Pesan::where('user_id', Auth::id())->where('payment_status', 'unpaid')->first();
 
         // Pass the data to the view
         return view('pesan.index', compact('pakets', 'orderedDates', 'bayar'));
@@ -62,7 +63,7 @@ class PesanController extends Controller
                 'tanggal' => $request->order_date,
                 'jam' => $request->jam,
                 'catatan' => $request->catatan,
-                'payment_status' => 'pending',
+                'payment_status' => 'unpaid',
             ]);
 
             // Redirect back with a success message
@@ -125,17 +126,23 @@ class PesanController extends Controller
             $image->move(public_path('images/bukti_pembayaran'), $imageName);
 
             // Update the record with the new file path
-            $pesan->payment_status = 'success';
+            $pesan->payment_status = 'pending';
             $pesan->bukti_pembayaran = $imageName;
             $pesan->save();
         }
 
+        Http::withHeaders([
+            'Authorization' => '-jqoagGef2duBNkJX7TG'
+            ])->post('https://api.fonnte.com/send', [
+                'target' => '089530618637',
+                'message' => 'Pesanan telah dibayarkan oleh ' . Auth::user()->name . '. Silahkan cek bukti pembayaran.',
+        ]);
         return redirect()->route('riwayat')->with('success', 'Bukti pembayaran berhasil diupload.');
     }
 
     public function pesanan()
     {
-        $pesans = Pesan::where('payment_status', 'success')->get();
+        $pesans = Pesan::whereIn('payment_status', ['success', 'pending'])->get();
         return view('admin.pesanan', compact('pesans'));
     }
 }

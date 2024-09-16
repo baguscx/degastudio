@@ -97,7 +97,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group mb-3">
-                        <label for="catatan">Catatan:</label>
+                        <label for="catatan">Catatan & Lokasi Lengkap:</label>
                         <textarea id="catatan" name="catatan" class="form-control"></textarea>
                     </div>
                 </div>

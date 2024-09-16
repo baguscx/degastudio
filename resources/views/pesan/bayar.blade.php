@@ -67,7 +67,7 @@
                                 <tr>
                                     <th scope="row">Bukti Pembayaran</th>
                                     <td>
-                                        <img src="{{ '/images/bukti_pembayaran/' . $pesan->bukti_pembayaran }}" alt="Bukti Pembayaran" class="img-fluid" style="max-width: 150px;">
+                                        <img src="{{ asset('/images/bukti_pembayaran/' . $pesan->bukti_pembayaran) }}" alt="Bukti Pembayaran" class="img-fluid" style="max-width: 150px;">
                                     </td>
                                 </tr>
                             @endif
@@ -87,6 +87,11 @@
                 <a href="{{ route('riwayat') }}" class="btn btn-sm btn-primary mt-3">Kembali ke Riwayat Pemesanan</a>
                 @endif
                 @if (Auth::user()->hasRole('admin'))
+                <form action="{{ route('acc.bayar', $pesan->id) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-sm btn-success mt-3">Setujui Pembayaran</button>
+                    <button type="" class="btn btn-sm btn-danger mt-3">Tolak</button>
+                </form>
                 <a href="{{ route('daftar.pesanan') }}" class="btn btn-sm btn-primary mt-3">Kembali ke Daftar Pemesanan</a>
                 @endif
             </div>

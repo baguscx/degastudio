@@ -148,18 +148,31 @@
 				<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-md-8 pb-30 header-text">
-							<h1 class="text-white">Foto Terbaru</h1>
+							<h1 class="text-white">Koleksi Foto</h1>
 							<p>
-                                Beberapa Hasil Foto Kami
+                                Contoh Beberapa Hasil Foto Kami. Mulai dari Event, Wedding, Enggagement
+								Endors, Karnaval, Family Gathering, Family Time, dll.
 							</p>
 						</div>
                         <div class="gal">
-                            <a href="#"><img src="images/slide1.jpg" alt=""></a>
+                            <a href="#"><img src="images/fo5a.jpg" alt=""></a>
                             <a href="#"><img src="images/slide2.jpg" alt=""></a>
                             <a href="#"><img src="images/slide3.png" alt=""></a>
-                            <a href="#"><img src="images/slide3a.jpg" alt=""></a>
+                            <a href="#"><img src="images/fo10.jpg" alt=""></a>
                             <a href="#"><img src="images/slide10.jpg" alt=""></a>
                             <a href="#"><img src="images/slide20.jpg" alt=""></a>
+							<a href="#"><img src="images/fo1.jpg" alt=""></a>
+							<a href="#"><img src="images/fo2.jpg" alt=""></a>
+							<a href="#"><img src="images/fo3.jpg" alt=""></a>
+							<a href="#"><img src="images/fo4.jpg" alt=""></a>
+							<a href="#"><img src="images/fo5b.jpg" alt=""></a>
+							<a href="#"><img src="images/fo6.jpg" alt=""></a>
+							<a href="#"><img src="images/fo7.jpg" alt=""></a>
+							<a href="#"><img src="images/fo8.jpg" alt=""></a>
+							<a href="#"><img src="images/fo9.jpg" alt=""></a>
+							<a href="#"><img src="images/fo11.jpg" alt=""></a>
+							<a href="#"><img src="images/fo12.jpg" alt=""></a>
+
                         </div>
 					</div>
 				</div>

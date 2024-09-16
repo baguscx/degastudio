@@ -75,5 +75,12 @@ class HistoryController extends Controller
         return view('pesan.bayar', compact('pesan'));
     }
 
+    public function accbayar(String $id){
+        $pesan = Pesan::find($id);
+        $pesan->payment_status = 'success';
+        $pesan->save();
+
+        return redirect()->route('daftar.pesanan');
+    }
 
 }

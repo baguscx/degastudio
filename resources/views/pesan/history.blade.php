@@ -27,8 +27,11 @@
                                     {{-- Assuming there is a payment status field --}}
                                     {{-- Replace with actual payment status if available --}}
                                     @if($pesan->payment_status == "success")
-                                        <span class="text-success">Dibayar</span>
+                                        <span class="text-success">Success</span>
                                     @elseif($pesan->payment_status == "pending")
+                                        <span class="text-warning">Menunggu Konfirmasi</span>
+                                        <a href="{{ route('bayar', $pesan->id) }}" class="btn btn-sm btn-primary">Detail</a>
+                                    @elseif($pesan->payment_status == "unpaid")
                                         <span class="text-warning">Belum Dibayar</span> |
                                         <a href="{{ route('bayar', $pesan->id) }}" class="btn btn-sm btn-primary">Bayar Sekarang</a>
                                     @endif

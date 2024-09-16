@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('payment_status')->nullable();
             $table->string('bukti_pembayaran')->nullable();
             $table->string('catatan')->nullable();
+            $table->string('alasan')->nullable();
             $table->timestamps();
         });
     }

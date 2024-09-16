@@ -4,11 +4,23 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+
+Route::get('/send-wa', function(){
+    $response = Http::withHeaders([
+        'Authorization' => 'w_y+F4R+44S5Kdr!nG2+'
+    ])->post('https://api.fonnte.com/send', [
+        'target' => '082257367240',
+        'message' => 'test message',
+    ]);
+
+    dd(json_decode($response, true));
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -30,6 +42,7 @@ Route::middleware('auth', 'role:admin')->group(function () {
     Route::post('/add-paket',[PaketController::class, 'store'])->name('store-paket');
     Route::get('/pesanan',[PesanController::class, 'pesanan'])->name('daftar.pesanan');
     Route::get('/detail/{id}',[HistoryController::class, 'bayar'])->name('detail.pesanan');
+    Route::post('/acc/{id}',[HistoryController::class, 'accbayar'])->name('acc.bayar');
 });
 
 Route::middleware('auth', 'role:user')->group(function () {
